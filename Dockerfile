@@ -20,4 +20,4 @@ RUN chmod ug+x /opt/kafka/start.sh
 
 WORKDIR /opt/kafka
 USER kafka
-ENTRYPOINT ["/opt/kafka/start.sh"]
+CMD ["/opt/kafka/start.sh"]
