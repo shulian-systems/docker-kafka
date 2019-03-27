@@ -8,7 +8,7 @@ RUN useradd -MN -g kafka -u 2000 -s /bin/false kafka
 RUN chown kafka:kafka /data
 
 RUN apt-get update && apt-get install -y wget libconfig-properties-perl
-RUN wget http://mirror.bit.edu.cn/apache/kafka/2.1.0/kafka_2.12-2.1.0.tgz
+RUN wget http://apache.cs.utah.edu/kafka/2.2.0/kafka_2.12-2.2.0.tgz
 RUN mkdir kafka && tar xzf *.tgz -C kafka --strip-component 1
 RUN rm *.tgz
 RUN apt-get remove -y wget && apt-get autoremove -y && rm -r /var/lib/apt/lists/*
