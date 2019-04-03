@@ -1,5 +1,6 @@
 #!/bin/sh
+if [ ! -f /data/server.properties ]; then
+  perl config.pl
+fi
 
-perl config.pl
-
-exec bin/kafka-server-start.sh server.properties
+exec bin/kafka-server-start.sh /data/server.properties
