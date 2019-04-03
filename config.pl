@@ -20,7 +20,7 @@ if ($ENV{'BROKER_ID'}) {
 if ($ENV{'ZK_HOSTS'}) {
   $properties->setProperty('zookeeper.connect', $ENV{'ZK_HOSTS'});
 }
-$properties->setProperty('log.dirs', '/data')
+$properties->setProperty('log.dirs', '/data');
 
 # saving...
 open my $fh, '>', 'server.properties'
