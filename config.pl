@@ -21,12 +21,11 @@ if ($ENV{'ZK_HOSTS'}) {
   $properties->setProperty('zookeeper.connect', $ENV{'ZK_HOSTS'});
 }
 
-if ($ENV{'EXTERNAL_PORT_BASE'} && $ENV{'EXTERNAL_HOST'}) {
+if ($ENV{'EXTERNAL_PORT_BASE'} && $ENV{'EXTERNAL_HOST'} && $ENV{'INTERNAL_HOST'}) {
   my $external_port = int($ENV{'EXTERNAL_PORT_BASE'}) + int($ENV{'BROKER_ID'});
-  $properties->setProperty('advertised.listeners', 'EXTERNAL://'.$ENV{'EXTERNAL_HOST'}.':'.$external_port);
-  $properties->setProperty('listener.security.protocol.map', 'PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT');
-  $properties->setProperty('listeners', 'PLAINTEXT://:9092,EXTERNAL://:'.$external_port);
-  $properties->setProperty('inter.broker.listener.name', 'PLAINTEXT');
+  $properties->setProperty('advertised.listeners', 'INTERNAL://'.$ENV{'INTERNAL_HOST'}.':9092,EXTERNAL://'.$ENV{'EXTERNAL_HOST'}.':'.$external_port);
+  $properties->setProperty('listener.security.protocol.map', 'INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT');
+  $properties->setProperty('inter.broker.listener.name', 'INTERNAL');
 }
 $properties->setProperty('log.dirs', '/data');
 
